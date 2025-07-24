@@ -141,6 +141,25 @@ class LinkedList {
     return null;
   }
 
+  // replace the value of the string at the specific index
+  replace(value, index) {
+    if (index < 0 || index >= this.size()) {
+      throw new Error("Index out of bounds");
+    }
+
+    if (this.isEmpty()) {
+      throw new Error("List is empty");
+    }
+
+    let counter = 0;
+    let tempNode = this.head;
+    while (counter !== index) {
+      tempNode = tempNode.nextNode;
+      counter++;
+    }
+    tempNode.value = value;
+  }
+
   // represent the list as a string
   toString() {
     // go through the list from head to tail

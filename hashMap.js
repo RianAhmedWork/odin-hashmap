@@ -1,8 +1,10 @@
+import { LinkedList } from "./linkedList";
+
 class HashMap {
   constructor() {
     this.capacity = 16;
     this.loadFactor = 0.8;
-    this.buckets = new Array(this.capacity).fill(null);
+    this.buckets = new Array(this.capacity).fill(new LinkedList());
   }
 
   hash(key) {
@@ -19,10 +21,13 @@ class HashMap {
   set(key, value) {
     hashedKey = this.hash(key);
     const pair = { key: key, value: value };
-    if (this.buckets[hashedKey].key === key) {
-      this.buckets[hashedKey].value = value;
+    if (
+      this.buckets[hashedKey].isEmpty() ||
+      !this.buckets[hashedKey].contains(pair)
+    ) {
+      this.buckets[hashedKey].append(pair);
     } else {
-      this.buckets[hashedKey] = pair;
+      this.buckets[hashedKey].replace(pair, this.buckets[hashedKey].find(pair));
     }
   }
 }
