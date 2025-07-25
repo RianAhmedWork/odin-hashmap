@@ -112,12 +112,12 @@ class LinkedList {
   }
 
   // returns true if it finds the value false if not
-  contains(value) {
+  containsKey(value) {
     // search through the list until a match is found
     // or we reach the end
     let tempNode = this.head;
     while (tempNode !== null) {
-      if (value === tempNode.value) {
+      if (value === tempNode.value.key) {
         return true;
       }
       tempNode = tempNode.nextNode;
@@ -126,13 +126,13 @@ class LinkedList {
   }
 
   // find the index of the value if not return null
-  find(value) {
+  findKey(value) {
     // search through the list until the value is found
     // and return the index at that value else return null
     let counter = 0;
     let tempNode = this.head;
     while (tempNode !== null) {
-      if (value === tempNode.value) {
+      if (value === tempNode.value.key) {
         return counter;
       }
       counter++;
@@ -142,7 +142,7 @@ class LinkedList {
   }
 
   // replace the value of the string at the specific index
-  replace(value, index) {
+  replaceValue(value, index) {
     if (index < 0 || index >= this.size()) {
       throw new Error("Index out of bounds");
     }
@@ -157,7 +157,7 @@ class LinkedList {
       tempNode = tempNode.nextNode;
       counter++;
     }
-    tempNode.value = value;
+    tempNode.value.value = value;
   }
 
   // represent the list as a string

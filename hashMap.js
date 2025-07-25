@@ -4,7 +4,10 @@ class HashMap {
   constructor() {
     this.capacity = 16;
     this.loadFactor = 0.8;
-    this.buckets = new Array(this.capacity).fill(new LinkedList());
+    this.buckets = Array.from(
+      { length: this.capacity },
+      () => new LinkedList()
+    );
   }
 
   hash(key) {
@@ -19,15 +22,13 @@ class HashMap {
   }
 
   set(key, value) {
-    hashedKey = this.hash(key);
+    const hashedKey = this.hash(key);
     const pair = { key: key, value: value };
-    if (
-      this.buckets[hashedKey].isEmpty() ||
-      !this.buckets[hashedKey].contains(pair)
-    ) {
-      this.buckets[hashedKey].append(pair);
+    const bucket = this.buckets[hashedKey];
+    if (bucket.isEmpty() || !bucket.containsKey(key)) {
+      bucket.append(pair);
     } else {
-      this.buckets[hashedKey].replace(pair, this.buckets[hashedKey].find(pair));
+      bucket.replaceValue(value, bucket.findKey(key));
     }
   }
 }
