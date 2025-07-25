@@ -31,4 +31,16 @@ class HashMap {
       bucket.replaceValue(value, bucket.findKey(key));
     }
   }
+
+  get(key) {
+    const hashedKey = this.hash(key);
+    const bucket = this.buckets[hashedKey];
+    return bucket.getKey(key);
+  }
+
+  has(key) {
+    const hashedKey = this.hash(key);
+    const bucket = this.buckets[hashedKey];
+    return bucket.containsKey(key);
+  }
 }

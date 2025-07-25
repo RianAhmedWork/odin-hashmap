@@ -125,6 +125,17 @@ class LinkedList {
     return false;
   }
 
+  getKey(value) {
+    let tempNode = this.head;
+    while (tempNode !== null) {
+      if (value === tempNode.value.key) {
+        return tempNode.value.value;
+      }
+      tempNode = tempNode.nextNode;
+    }
+    return null;
+  }
+
   // find the index of the value if not return null
   findKey(value) {
     // search through the list until the value is found
