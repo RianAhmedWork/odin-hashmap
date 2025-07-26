@@ -43,4 +43,15 @@ class HashMap {
     const bucket = this.buckets[hashedKey];
     return bucket.containsKey(key);
   }
+
+  remove(key) {
+    const hashedKey = this.hash(key);
+    const bucket = this.buckets[hashedKey];
+    if (bucket.containsKey(key)) {
+      bucket.removeAt(bucket.findKey(key));
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
