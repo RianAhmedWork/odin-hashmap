@@ -3,7 +3,7 @@ import { LinkedList } from "./linkedList";
 class HashMap {
   constructor() {
     this.capacity = 16;
-    this.loadFactor = 0.8;
+    this.loadFactor = 0.75;
     this.buckets = Array.from(
       { length: this.capacity },
       () => new LinkedList()
@@ -91,5 +91,19 @@ class HashMap {
       array.push(...item.getAllEntries());
     });
     return array;
+  }
+
+  increaseLoad() {
+    let oldEntries = this.entries();
+    this.capacity = this.capacity * 2;
+    this.buckets.length = this.capacity;
+    for (let i = this.capacity / 2; i < this.capacity; i++) {
+      if (!this.buckets[i]) {
+        this.buckets[i] = new LinkedList();
+      }
+    }
+    oldEntries.forEach((item) => {
+      this.set(item[0], item[1]);
+    });
   }
 }
