@@ -68,4 +68,20 @@ class HashMap {
       item.clearList();
     });
   }
+
+  keys() {
+    let array = [];
+    this.buckets.forEach((item) => {
+      array.push(...item.getAllKeys());
+    });
+    return array;
+  }
+
+  values() {
+    let array = [];
+    this.buckets.forEach((item) => {
+      array.push(...item.getAllValues());
+    });
+    return array;
+  }
 }
