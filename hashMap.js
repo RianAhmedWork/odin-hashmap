@@ -93,6 +93,22 @@ class HashMap {
     return array;
   }
 
+  checkLoad() {
+    let currentLoadFactor = () => {
+      let counter = 0;
+      this.buckets.forEach((item) => {
+        if (!item.isEmpty()) {
+          counter++;
+        }
+      });
+      return counter / this.capacity;
+    };
+
+    if (currentLoadFactor > this.loadFactor) {
+      this.increaseLoad();
+    }
+  }
+
   increaseLoad() {
     let oldEntries = this.entries();
     this.capacity = this.capacity * 2;
