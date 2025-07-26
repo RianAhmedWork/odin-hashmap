@@ -7,6 +7,11 @@ class LinkedList {
     this.tail = null;
   }
 
+  clearList() {
+    this.head = null;
+    this.tail = null;
+  }
+
   isEmpty() {
     return this.head === null && this.tail === null;
   }

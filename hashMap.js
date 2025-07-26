@@ -54,4 +54,18 @@ class HashMap {
       return false;
     }
   }
+
+  length() {
+    let totalLength = 0;
+    this.buckets.forEach((item) => {
+      totalLength += item.size();
+    });
+    return totalLength;
+  }
+
+  clear() {
+    this.buckets.forEach((item) => {
+      item.clearList();
+    });
+  }
 }
