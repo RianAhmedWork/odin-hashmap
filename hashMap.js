@@ -22,6 +22,7 @@ class HashMap {
   }
 
   set(key, value) {
+    this.checkLoad();
     const hashedKey = this.hash(key);
     const pair = { key: key, value: value };
     const bucket = this.buckets[hashedKey];
@@ -104,7 +105,7 @@ class HashMap {
       return counter / this.capacity;
     };
 
-    if (currentLoadFactor > this.loadFactor) {
+    if (currentLoadFactor() > this.loadFactor) {
       this.increaseLoad();
     }
   }
