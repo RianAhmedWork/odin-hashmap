@@ -84,4 +84,12 @@ class HashMap {
     });
     return array;
   }
+
+  entries() {
+    let array = [];
+    this.buckets.forEach((item) => {
+      array.push(...item.getAllEntries());
+    });
+    return array;
+  }
 }
